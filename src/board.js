@@ -7,6 +7,7 @@ export default class Board {
         this.squares = [];
         this.wrapper = document.querySelector('.grid');
     }
+
     init() {
         const fragment = document.createDocumentFragment();
         for (let i = 0; i < this.widthBoard * this.widthBoard; i++) {
@@ -16,6 +17,7 @@ export default class Board {
         }
         this.wrapper.appendChild(fragment);
     }
+
     generateNewCell() {
         const randomNumber = Math.floor(Math.random() * this.squares.length);
 
@@ -25,11 +27,13 @@ export default class Board {
             this.generateNewCell();
         }
     }
+
     movingColumn(direction) {
         for (let i = 0; i < this.widthBoard; i++) {
             this.fillColumn(i, direction === 'up');
         }
     }
+
     movingRow(direction) {
         for (let i = 0; i < this.widthBoard * this.widthBoard; i++) {
             if (i % 4 === 0) {
@@ -37,6 +41,7 @@ export default class Board {
             }
         }
     }
+
     fillColumn(indexColumn, isUp) {
         const column = [];
     
@@ -50,27 +55,28 @@ export default class Board {
             this.squares[indexColumn + (this.widthBoard * i)].setValue(value);
         });
     }
+
     fillRow(rowIndex, isLeft) {
         const row = [];
     
         for (let i = 0; i < this.widthBoard; i++) {
             row.push(this.squares[rowIndex + i].getValue());
         }
-    
         const filteredRow = row.filter((num) => num);
         const emptyCellInRowSize = this.widthBoard - filteredRow.length;
-    
         const newRow = this.makeNewSequence(filteredRow, emptyCellInRowSize, isLeft);
     
         newRow.forEach((value, i) => {
             this.squares[rowIndex + i].setValue(value);
         });
     }
+
     makeNewSequence(numbers, emptySequensSize, isReverse) {
         const emptySequence = Array(emptySequensSize).fill('');
     
         return isReverse ? numbers.concat(emptySequence) : emptySequence.concat(numbers);
     }
+
     combineColumn() {
         for (let i = 15; i >= this.widthBoard; i--) {
             if ((this.squares[i].getValue() === this.squares[i - this.widthBoard].getValue()) && this.squares[i].getValue() !== '') {
@@ -83,6 +89,7 @@ export default class Board {
             }
         }
     }
+    
     combineRow() {
         for (let i = 15; i > 1; i--) {
             if ((this.squares[i].getValue() === this.squares[i - 1].getValue()) && this.squares[i].getValue() !== '' && i % 4 !== 0) {

@@ -1,5 +1,4 @@
 import Board from './board.js';
-
 export const scoreDisplay = document.querySelector('.score');
 export const resultDisplay = document.querySelector('.result');
 

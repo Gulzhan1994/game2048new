@@ -18,6 +18,7 @@ export default class Cell {
         this.value = '';
         this.dom = null;
     }
+    
     getNewElement() {
         const square = document.createElement('div');
         square.innerHTML = '';
@@ -25,9 +26,11 @@ export default class Cell {
         this.dom = square;
         return square;
     }
+
     getValue() { 
         return this.value;
     }
+
     setValue(value) {
         this.dom.textContent = value;
         this.value = value;
