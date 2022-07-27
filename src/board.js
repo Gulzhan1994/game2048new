@@ -86,6 +86,7 @@ export default class Board {
                 this.squares[i - this.widthBoard].setValue('');
 
                 this.scoreDisplay = this.squares[i].getValue() + combinedTotal;
+                console.log(this.scoreDisplay);
             }
         }
     }
@@ -99,6 +100,7 @@ export default class Board {
                 this.squares[i - 1].setValue('');
 
                 this.scoreDisplay = this.squares[i].getValue() + combinedTotal;
+                console.log(this.scoreDisplay);
             }
         }
     }

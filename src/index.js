@@ -36,17 +36,17 @@ class GameManager {
         }
     }
     checkForGameOver() {
-        const zeros = 0;
         for (let i = 0; i < this.squares.length; i++) {
-            if (this.squares[i].getValue() == 8) {
+            if (this.squares[i].getValue() === 2048) {
                 alert('You win!');
                 document.removeEventListener('keyup', this.clickControl.bind(this));
             }
-            if (zeros === 0) {
-                resultDisplay.innerHTML = 'You lose!';
+            if (this.board !== '') {
+                alert('You lose!');
                 document.removeEventListener('keyup', this.clickControl.bind(this));
             }
         }
+        this.isGameOver = true;
     }
 }
 
